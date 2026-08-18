@@ -2,7 +2,6 @@
 
 pub type CardId = i64;
 
-/// A deck as shown in the deck list, with due counts from Anki's scheduler.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Deck {
     pub name: String,
@@ -11,6 +10,7 @@ pub struct Deck {
     pub review_count: u32,
 }
 
+// This is like a method for the struct
 impl Deck {
     pub fn due_count(&self) -> u32 {
         self.new_count + self.learn_count + self.review_count
@@ -62,9 +62,12 @@ impl Ease {
 }
 
 #[cfg(test)]
+// Creates a module
 mod tests {
+    // imports everything from outside, so it doesn't need super::deck
     use super::*;
 
+    // tells you its a test
     #[test]
     fn ease_round_trips_through_keys() {
         for n in 1u8..=4 {
